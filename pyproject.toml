@@ -1,0 +1,12 @@
+[project]
+name = "purrify"
+version = "0.1.0"
+description = "HashCat mask generator for mobile phone numbers based on libphonenumber metadata"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pipetools>=1.1.0",
+]
+
+[project.scripts]
+purrify = "purrify:main"
