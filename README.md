@@ -28,7 +28,7 @@ uv tool install git+https://github.com/13m0n4de/purrify
 Specify one or more city names in Chinese, English, or other languages:
 
 ```
-uvx purrify 南京 shanghai < ranges.csv > phones.hcmask
+purrify 南京 shanghai < ranges.csv > phones.hcmask
 hashcat -a 3 -m 13000 rar.hash phones.hcmask
 ```
 
