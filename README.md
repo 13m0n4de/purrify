@@ -17,7 +17,7 @@ unzip -j metadata.zip metadata/86/ranges.csv
 
 > **Note:** The `86` in the path represents China's country calling code. You can replace it with other country codes as needed (e.g., `1` for USA/Canada, `44` for UK, `81` for Japan, etc.).
 
-Install Purrify using [UV](https://github.com/astral-sh/uv):
+Install Purrify using [uv](https://github.com/astral-sh/uv):
 
 ```
 uv tool install git+https://github.com/13m0n4de/purrify

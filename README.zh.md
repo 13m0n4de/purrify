@@ -17,7 +17,7 @@ unzip -j metadata.zip metadata/86/ranges.csv
 
 > **注意：** 路径中的 `86` 代表中国的国际区号。你可以根据需要替换为其他国家的区号（例如 `1` 代表美国/加拿大，`44` 代表英国，`81` 代表日本等）。
 
-使用 [UV](https://github.com/astral-sh/uv) 安装 Purrify：
+使用 [uv](https://github.com/astral-sh/uv) 安装 Purrify：
 
 ```
 uv tool install git+https://github.com/13m0n4de/purrify
