@@ -65,6 +65,12 @@ def parse_csv_line(line: str) -> list[str]:
     return [field.strip().strip('"') for field in line.rstrip("\n").split(";")]
 
 
+def in_cities(row: list[str], cities: list[str], geo_indices: tuple[int]) -> bool:
+    return any(
+        city.lower() in row[idx].lower() for idx in geo_indices for city in cities
+    )
+
+
 def main():
     cities = sys.argv[1:]
 
@@ -72,23 +78,17 @@ def main():
     prefix_idx = header.index("Prefix")
     length_idx = header.index("Length")
     type_idx = header.index("Type")
-    geocode_indices = header > (
+    geo_indices = header > (
         pipe | enumerate | where(X[1].startswith("Geocode:")) | foreach(X[0]) | tuple
     )
-    min_length = max(prefix_idx, length_idx, type_idx, *geocode_indices)
+    min_length = max(prefix_idx, length_idx, type_idx, *geo_indices)
 
     _ = sys.stdin > (
         pipe
         | foreach(parse_csv_line)
         | where(X.__len__() > min_length)
         | where(X[type_idx] == "MOBILE")
-        | where(
-            lambda x: any(
-                city.lower() in x[geo_idx].lower()
-                for geo_idx in geocode_indices
-                for city in cities
-            )
-        )
+        | where(in_cities, geo_indices=geo_indices, cities=cities)
         | foreach(lambda x: (x[prefix_idx], int(x[length_idx])))
         | foreach(as_args(purrify))
         | foreach_do(print)
