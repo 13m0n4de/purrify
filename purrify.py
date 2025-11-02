@@ -74,7 +74,7 @@ def in_cities(row: list[str], cities: list[str], geo_indices: tuple[int]) -> boo
 def main():
     cities = sys.argv[1:]
 
-    header = sys.stdin > pipe | take_first(1) | next | parse_csv_line
+    header = sys.stdin > pipe | next | parse_csv_line
     prefix_idx = header.index("Prefix")
     length_idx = header.index("Length")
     type_idx = header.index("Type")
